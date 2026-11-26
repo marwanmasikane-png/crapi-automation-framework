@@ -1,0 +1,784 @@
+openapi: 3.0.0
+info:
+  title: flows Mitmproxy2Swagger
+  version: 1.0.0
+servers:
+- url: http://127.0.0.1:8888
+  description: The default server
+paths:
+  /identity/api/auth/verify:
+    post:
+      summary: POST verify
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                  status:
+                    type: number
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                token:
+                  type: string
+  /identity/api/auth/login:
+    post:
+      summary: POST login
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+                  type:
+                    type: string
+                  message:
+                    type: string
+                  mfaRequired:
+                    type: boolean
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+  /identity/api/v2/user/dashboard:
+    get:
+      summary: GET dashboard
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: number
+                  name:
+                    type: string
+                  email:
+                    type: string
+                  number:
+                    type: string
+                  picture_url:
+                    type: object
+                    nullable: true
+                  video_url:
+                    type: object
+                    nullable: true
+                  video_name:
+                    type: object
+                    nullable: true
+                  available_credit:
+                    type: number
+                  video_id:
+                    type: number
+                  role:
+                    type: string
+  /identity/api/v2/vehicle/vehicles:
+    get:
+      summary: GET vehicles
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: number
+                    uuid:
+                      type: string
+                    pincode:
+                      type: string
+                    vin:
+                      type: string
+                    year:
+                      type: number
+                    status:
+                      type: string
+                    previousOwners:
+                      type: array
+                      items: {}
+                    model:
+                      type: object
+                      properties:
+                        id:
+                          type: number
+                        model:
+                          type: string
+                        fuel_type:
+                          type: string
+                        vehicle_img:
+                          type: string
+                        vehiclecompany:
+                          type: object
+                          properties:
+                            id:
+                              type: number
+                            name:
+                              type: string
+                    vehicleLocation:
+                      type: object
+                      properties:
+                        id:
+                          type: number
+                        latitude:
+                          type: string
+                        longitude:
+                          type: string
+                    owner:
+                      type: object
+                      nullable: true
+  /identity/api/v2/vehicle/5959965f-2106-4316-a7fe-dfe3b1eaf5ad/location:
+    get:
+      summary: GET location
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  carId:
+                    type: string
+                  vehicleLocation:
+                    type: object
+                    properties:
+                      id:
+                        type: number
+                      latitude:
+                        type: string
+                      longitude:
+                        type: string
+                  fullName:
+                    type: string
+                  email:
+                    type: string
+  /workshop/api/merchant/service_requests/H366XG59K56E9R545:
+    get:
+      summary: GET h366xg59k56e9r545
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  service_requests:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: number
+                        mechanic:
+                          type: object
+                          properties:
+                            id:
+                              type: number
+                            mechanic_code:
+                              type: string
+                        vehicle:
+                          type: object
+                          properties:
+                            id:
+                              type: number
+                            vin:
+                              type: string
+                            owner:
+                              type: object
+                              properties:
+                                email:
+                                  type: string
+                                number:
+                                  type: string
+                        problem_details:
+                          type: string
+                        status:
+                          type: string
+                        created_on:
+                          type: string
+                        updated_on:
+                          type: object
+                          nullable: true
+                        comments:
+                          type: array
+                          items: {}
+                  next_offset:
+                    type: object
+                    nullable: true
+                  previous_offset:
+                    type: object
+                    nullable: true
+                  count:
+                    type: number
+  /service-report:
+    get:
+      summary: GET service-report
+      responses:
+        '200':
+          description: OK
+          content: {}
+      parameters:
+      - name: id
+        in: query
+        required: false
+        schema:
+          type: number
+  /workshop/api/mechanic/mechanic_report:
+    get:
+      summary: GET mechanic_report
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: number
+                  mechanic:
+                    type: object
+                    properties:
+                      id:
+                        type: number
+                      mechanic_code:
+                        type: string
+                      user:
+                        type: object
+                        properties:
+                          email:
+                            type: string
+                          number:
+                            type: string
+                  vehicle:
+                    type: object
+                    properties:
+                      id:
+                        type: number
+                      vin:
+                        type: string
+                      owner:
+                        type: object
+                        properties:
+                          email:
+                            type: string
+                          number:
+                            type: string
+                  problem_details:
+                    type: string
+                  status:
+                    type: string
+                  created_on:
+                    type: string
+                  updated_on:
+                    type: object
+                    nullable: true
+                  comments:
+                    type: array
+                    items: {}
+      parameters:
+      - name: report_id
+        in: query
+        required: false
+        schema:
+          type: number
+  /%F0%9F%A4%96:
+    get:
+      summary: GET %f0%9f%a4%96
+      responses:
+        '200':
+          description: OK
+          content: {}
+  /chatbot/genai/state:
+    get:
+      summary: GET state
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  initialized:
+                    type: string
+                  message:
+                    type: string
+  /workshop/api/mechanic:
+    get:
+      summary: GET mechanic
+      responses:
+        '200':
+          description: OK
+          content: {}
+  /workshop/api/mechanic/:
+    get:
+      summary: GET mechanic
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  mechanics:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: number
+                        mechanic_code:
+                          type: string
+                        user:
+                          type: object
+                          properties:
+                            email:
+                              type: string
+                            number:
+                              type: string
+                  previous_offset:
+                    type: object
+                    nullable: true
+                  next_offset:
+                    type: object
+                    nullable: true
+  /workshop/api/merchant/contact_mechanic:
+    post:
+      summary: POST contact_mechanic
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  response_from_mechanic_api:
+                    type: object
+                    properties:
+                      id:
+                        type: number
+                      sent:
+                        type: boolean
+                      report_link:
+                        type: string
+                  status:
+                    type: number
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                mechanic_code:
+                  type: string
+                problem_details:
+                  type: string
+                vin:
+                  type: string
+                mechanic_api:
+                  type: string
+                repeat_request_if_failed:
+                  type: boolean
+                number_of_repeats:
+                  type: number
+  /community/api/v2/community/posts/recent:
+    get:
+      summary: GET recent
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  posts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        title:
+                          type: string
+                        content:
+                          type: string
+                        author:
+                          type: object
+                          properties:
+                            nickname:
+                              type: string
+                            email:
+                              type: string
+                            vehicleid:
+                              type: string
+                            profile_pic_url:
+                              type: string
+                            created_at:
+                              type: string
+                        comments:
+                          type: array
+                          items: {}
+                        authorid:
+                          type: number
+                        CreatedAt:
+                          type: string
+                  next_offset:
+                    type: object
+                    nullable: true
+                  previous_offset:
+                    type: object
+                    nullable: true
+                  total:
+                    type: number
+      parameters:
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: number
+      - name: offset
+        in: query
+        required: false
+        schema:
+          type: number
+  /community/api/v2/community/posts:
+    post:
+      summary: POST posts
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  title:
+                    type: string
+                  content:
+                    type: string
+                  author:
+                    type: object
+                    properties:
+                      nickname:
+                        type: string
+                      email:
+                        type: string
+                      vehicleid:
+                        type: string
+                      profile_pic_url:
+                        type: string
+                      created_at:
+                        type: string
+                  comments:
+                    type: array
+                    items: {}
+                  authorid:
+                    type: number
+                  CreatedAt:
+                    type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                content:
+                  type: string
+  /community/api/v2/community/posts/cDRksxPByQZVT5xnvxHu6m:
+    get:
+      summary: GET cdrksxpbyqzvt5xnvxhu6m
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  title:
+                    type: string
+                  content:
+                    type: string
+                  author:
+                    type: object
+                    properties:
+                      nickname:
+                        type: string
+                      email:
+                        type: string
+                      vehicleid:
+                        type: string
+                      profile_pic_url:
+                        type: string
+                      created_at:
+                        type: string
+                  comments:
+                    type: array
+                    items: {}
+                  authorid:
+                    type: number
+                  CreatedAt:
+                    type: string
+  /workshop/api/shop/products:
+    get:
+      summary: GET products
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  products:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: number
+                        name:
+                          type: string
+                        price:
+                          type: string
+                        image_url:
+                          type: string
+                  credit:
+                    type: number
+                  next_offset:
+                    type: object
+                    nullable: true
+                  previous_offset:
+                    type: object
+                    nullable: true
+                  count:
+                    type: number
+      parameters:
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: number
+      - name: offset
+        in: query
+        required: false
+        schema:
+          type: number
+  /community/api/v2/coupon/validate-coupon:
+    post:
+      summary: POST validate-coupon
+      responses:
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                coupon_code:
+                  type: string
+  /workshop/api/shop/orders:
+    post:
+      summary: POST orders
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: number
+                  message:
+                    type: string
+                  credit:
+                    type: number
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                product_id:
+                  type: number
+                quantity:
+                  type: number
+  /workshop/api/shop/orders/{id}:
+    get:
+      summary: GET orders by id
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  orders:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: number
+                        user:
+                          type: object
+                          properties:
+                            email:
+                              type: string
+                            number:
+                              type: string
+                        product:
+                          type: object
+                          properties:
+                            id:
+                              type: number
+                            name:
+                              type: string
+                            price:
+                              type: string
+                            image_url:
+                              type: string
+                        quantity:
+                          type: number
+                        status:
+                          type: string
+                        transaction_id:
+                          type: string
+                        created_on:
+                          type: string
+                  next_offset:
+                    type: object
+                    nullable: true
+                  previous_offset:
+                    type: object
+                    nullable: true
+                  count:
+                    type: number
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: number
+      - name: offset
+        in: query
+        required: false
+        schema:
+          type: number
+    post:
+      summary: POST orders by id
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                  qr_code_url:
+                    type: string
+                  order:
+                    type: object
+                    properties:
+                      id:
+                        type: number
+                      user:
+                        type: object
+                        properties:
+                          email:
+                            type: string
+                          number:
+                            type: string
+                      product:
+                        type: object
+                        properties:
+                          id:
+                            type: number
+                          name:
+                            type: string
+                          price:
+                            type: string
+                          image_url:
+                            type: string
+                      quantity:
+                        type: number
+                      status:
+                        type: string
+                      transaction_id:
+                        type: string
+                      created_on:
+                        type: string
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: order_id
+        in: query
+        required: false
+        schema:
+          type: number
+  /workshop/api/shop/return_qr_code:
+    get:
+      summary: GET return_qr_code
+      responses:
+        '200':
+          description: OK
+          content: {}
+x-path-templates:
+# Remove the ignore: prefix to generate an endpoint with its URL
+# Lines that are closer to the top take precedence, the matching is greedy
+- /workshop/api/shop/orders/7
+- /workshop/api/shop/orders/all
+- /workshop/api/shop/orders/return_order
